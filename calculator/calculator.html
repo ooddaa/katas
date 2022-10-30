@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculator</title>
+    <style>
+      .calculator {
+        display: flex;
+        width: 300px;
+        flex-wrap: wrap;
+        border: rgb(194, 194, 194) 1px solid;
+        border-radius: 4px;
+        box-shadow: 0 0 3px 0px grey;
+        justify-content: center;
+        align-items: center;
+        color: rgb(24, 24, 24);
+        font-size: 14px;
+        padding-bottom: 20px;
+      }
+
+      .display {
+        width: 300px;
+        height: 50px;
+        border-bottom: rgb(194, 194, 194) .5px solid;
+        font-size: 24px;
+        color:rgb(127, 126, 126)
+      }
+
+      .display-inner {
+        margin: 10px;
+      }
+
+      .keypad {
+        padding-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+      }
+
+      .btn {
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 0 3px 0px grey;
+        border-radius: 4px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .btn:active {
+        transform: scale(.98);
+      }
+
+      .operator {
+        background-color: rgb(216, 216, 252);
+      }
+
+      .equals {
+        grid-column: 4;
+        grid-row: 4 / 6;
+        height: auto;
+      }
+
+      .zero {
+        grid-column: 1 / 3;
+        grid-row: 5;
+        width: auto;
+      }
+
+      .reset {
+        grid-column: 4;
+        grid-row: 2;
+        height: auto;
+      }
+
+      .backspace {
+        grid-column: 4;
+        grid-row: 3;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="display">
+        <div class="display-inner"></div>
+      </div>
+      <div class="keypad">
+        <div class="btn btn-add operator" onclick="pushOp('+')">+</div>
+        <div class="btn btn-sub operator" onclick="pushOp('-')">-</div>
+        <div class="btn btn-mult operator" onclick="pushOp('*')">*</div>
+        <div class="btn btn-div operator" onclick="pushOp('/')">/</div>
+
+        <div class="btn btn-7" onclick="push(7)">7</div>
+        <div class="btn btn-8" onclick="push(8)">8</div>
+        <div class="btn btn-9" onclick="push(9)">9</div>
+        <div class="btn btn-4" onclick="push(4)">4</div>
+        <div class="btn btn-5" onclick="push(5)">5</div>
+        <div class="btn btn-6" onclick="push(6)">6</div>
+        <div class="btn btn-1" onclick="push(1)">1</div>
+        <div class="btn btn-2" onclick="push(2)">2</div>
+        <div class="btn btn-3" onclick="push(3)">3</div>
+        <div class="btn btn-0 zero" onclick="push(0)">0</div>
+
+        <div class="btn btn-dot" onclick="push('.')">.</div>
+        <div class="btn btn-reset reset" onclick="reset()">C</div>
+        <div class="btn btn-eq equals" onclick="eq()">=</div>
+        <div class="btn btn-all-clear backspace" onclick="backspace()">
+          &lAarr;
+        </div>
+      </div>
+    </div>
+    <script>
+      let firstPass = true;
+      let exp = ["", null, ""]; // [1, "+", 2] [100, "/", 5]
+
+      function push(item) {
+        let [lhs, op, rhs] = exp;
+        if (op && ["+", "-", "*", "/"].includes(op)) {
+          // then proceed with rhs
+          if (rhs === "0") {
+            exp[2] = String(item);
+          } else {
+            exp[2] += String(item);
+          }
+          display(exp[2]);
+        } else if (firstPass) {
+          if (lhs === "0") {
+            exp[0] = String(item);
+          } else {
+            exp[0] += String(item);
+          }
+          display(exp[0]);
+        }
+        console.log(exp);
+      }
+
+      function pushOp(item) {
+        let [lhs /* , op, rhs */] = exp;
+        if (["+", "-", "*", "/"].includes(item)) {
+          if (lhs && lhs.length) {
+            exp[1] = item;
+            console.log("exp", exp);
+          }
+        }
+      }
+
+      function add(lhs, rhs) {
+        return Number(lhs) + Number(rhs);
+      }
+      function sub(lhs, rhs) {
+        return Number(lhs) - Number(rhs);
+      }
+      function mult(lhs, rhs) {
+        return Number(lhs) * Number(rhs);
+      }
+      function div(lhs, rhs) {
+        return Number(lhs) / Number(rhs);
+      }
+
+      const calc = {
+        "+": add,
+        "-": sub,
+        "*": mult,
+        "/": div,
+      };
+
+      function eq() {
+        // exp[1] = "/"
+        let [lhs, op, rhs] = exp;
+        if (lhs.length && ["+", "-", "*", "/"].includes(op) && rhs.length) {
+          const result = calc[op](lhs, rhs);
+
+          if (isNaN(result) || result === Infinity) {
+            display("Err");
+            exp = ["", null, ""];
+            firstPass = true;
+            return;
+          }
+          display(result);
+          exp = [String(result), null, ""];
+
+          firstPass = false;
+        }
+      }
+      function display(item /* num | string */) {
+        const displ = document.getElementsByClassName("display-inner")[0];
+        displ.innerHTML = `<b>${item}</b>`;
+      }
+
+      function reset() {
+        exp = ["", null, ""];
+        firstPass = true;
+        console.log("clear", exp, firstPass);
+        display("");
+      }
+
+      function backspace() {
+        let [lhs, op, rhs] = exp;
+        if (op && rhs && rhs.length) {
+          exp[2] = rhs.slice(0, rhs.length - 1);
+          display(exp[2]);
+        } else if (lhs && lhs.length) {
+          exp[0] = lhs.slice(0, lhs.length - 1);
+          display(exp[0]);
+        }
+      }
+    </script>
+  </body>
+</html>
