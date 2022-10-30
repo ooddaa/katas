@@ -2,10 +2,6 @@ defmodule PuzzleSolver do
   @moduledoc """
     a
   """
-  def solve(clues) do
-    expected = [[1, 3, 4, 2], [4, 2, 1, 3], [3, 4, 2, 1], [2, 1, 3, 4]]
-    expected
-  end
 
   def matcher(x) do
     case x do
@@ -53,7 +49,6 @@ defmodule PuzzleSolver do
   def make_clues(matrix) do
     # directions
     directions = [
-      # matrix |> Enum.zip_with(&Tuple.to_list/1),
       matrix |> Enum.zip() |> Enum.map(&Tuple.to_list/1),
       matrix |> Enum.map(&Enum.reverse/1),
       matrix
@@ -66,18 +61,18 @@ defmodule PuzzleSolver do
 
     for matrix <- directions,
         clues <- Enum.map(matrix, &matcher/1) do
-      clues
+        clues
     end
   end
 
   def solve(clues) do
     rows = make_rows()
-    for matrix <- make_matrices(rows),
-            clue <- make_clues(matrix),
-            clue == clues
+    [rv] = for matrix <- make_matrices(rows),
+      clues == make_clues(matrix)
         do
-          clue
+          matrix
       end
+    rv
   end
 
   defp check_l(l) do
@@ -118,15 +113,6 @@ defmodule PuzzleSolverTest do
   test
   """
   use ExUnit.Case
-
-  test "it can solve 4x4 puzzle 1" do
-    clues = [2, 2, 1, 3, 2, 2, 3, 1, 1, 2, 2, 3, 3, 2, 1, 3]
-
-    expected = [[1, 3, 4, 2], [4, 2, 1, 3], [3, 4, 2, 1], [2, 1, 3, 4]]
-
-    actual = PuzzleSolver.solve(clues)
-    assert actual == expected
-  end
 
   test "matcher" do
     assert PuzzleSolver.matcher([1, 2, 3, 4]) == 4
@@ -258,7 +244,7 @@ defmodule PuzzleSolverTest do
     assert rv == clues
   end
 
-  test "it can solve 4x4 puzzle 2" do
+  test "it can solve 4x4 puzzle 1" do
     expected = [
       [1, 3, 4, 2],
       [4, 2, 1, 3],
