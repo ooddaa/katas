@@ -68,7 +68,7 @@ defmodule PuzzleSolver do
   def solve(clues) do
     rows = make_rows()
     [rv] = for matrix <- make_matrices(rows),
-      clues == make_clues(matrix)
+      clues == mask(clues, make_clues(matrix))
         do
           matrix
       end
@@ -103,6 +103,14 @@ defmodule PuzzleSolver do
       end
 
     length(rv) == 4
+  end
+
+  def mask(masker, maskee) do
+    Enum.zip(masker, maskee)
+    |> Enum.map(fn
+      { 0, _ } -> 0
+      { _, x } -> x
+      end)
   end
 end
 
@@ -274,18 +282,25 @@ defmodule PuzzleSolverTest do
     assert actual == expected
   end
 
-  # test "it can solve 4x4 puzzle 2" do
-  #   clues    = [0, 0, 1, 2,
-  #               0, 2, 0, 0,
-  #               0, 3, 0, 0,
-  #               0, 1, 0, 0]
+  test "mask" do
+    masker = [ 1, 0, 0, 0, 2 ]
+    maskee = [ 5, 5, 5, 5, 5 ]
+    rv = PuzzleSolver.mask(masker, maskee)
+    assert rv = [ 5, 0, 0, 0, 5]
+  end
 
-  #   expected = [ [2, 1, 4, 3],
-  #                [3, 4, 1, 2],
-  #                [4, 2, 3, 1],
-  #                [1, 3, 2, 4] ]
+  test "it can solve 4x4 puzzle 2" do
+    clues    = [0, 0, 1, 2,
+                0, 2, 0, 0,
+                0, 3, 0, 0,
+                0, 1, 0, 0]
 
-  #   actual = PuzzleSolver.solve(clues)
-  #   assert actual == expected
-  # end
+    expected = [ [2, 1, 4, 3],
+                 [3, 4, 1, 2],
+                 [4, 2, 3, 1],
+                 [1, 3, 2, 4] ]
+
+    actual = PuzzleSolver.solve(clues)
+    assert actual == expected
+  end
 end
