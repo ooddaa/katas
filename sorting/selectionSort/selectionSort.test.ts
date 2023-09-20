@@ -34,8 +34,10 @@ function selectionSort(nums: number[]): number[] {
 }
 function recur(nums: number[], acc: number[]): number[] {
   if (!nums.length) return acc
-  let minInd = min(nums) 
-  return recur(nums.splice(minInd, 1), [...acc, nums[minInd]])
+  let minInd = min(nums)
+  let newAcc = [...acc, nums[minInd]] 
+  nums.splice(minInd, 1)
+  return recur(nums, newAcc)
 }
 
 test("[1, 4, 10, 2, 3, 7, 8, 6, 5, 9]", () => {
