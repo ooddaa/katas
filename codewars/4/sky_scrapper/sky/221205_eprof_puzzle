@@ -1,0 +1,304 @@
+Compiling 1 file (.ex)
+Warmup...
+
+
+Profile results of #PID<0.216.0>
+#                                                    CALLS     %   TIME µS/CALL
+Total                                              9076083 100.0 206313    0.23
+anonymous fn/1 in Enum.zip_reduce/3                   1448  0.01    211    0.15
+:erlang.setelement/3                                  1406  0.02    325    0.23
+Enum.reduce/3                                         1734  0.02    358    0.21
+anonymous fn/3 in Enum.zip_reduce/3                   1448  0.02    379    0.26
+anonymous fn/2 in Enum.zip/1                          1448  0.02    387    0.27
+anonymous fn/2 in Stream.zip/2                        2896  0.02    401    0.14
+anonymous fn/1 in Puzzle.Solver.mask/2                2896  0.02    405    0.14
+anonymous fn/2 in Puzzle.Solver.is_valid_matrix?/1    2896  0.02    409    0.14
+anonymous fn/2 in Puzzle.Solver.make_clues/1          2896  0.02    419    0.14
+Enum.zip_list/3                                       3077  0.02    450    0.15
+Enum.reverse/1                                        1811  0.02    496    0.27
+Puzzle.Solver.matcher/1                               2896  0.02    497    0.17
+anonymous fn/3 in Stream.do_transform/7               4632  0.03    678    0.15
+anonymous fn/1 in Stream.transform/3                  4632  0.03    692    0.15
+anonymous fn/1 in Stream.transform/3                  4632  0.03    696    0.15
+Stream.transform/3                                    4632  0.04    730    0.16
+Stream.flat_map/2                                     4632  0.04    732    0.16
+anonymous fn/3 in Stream.do_transform_result/6        4631  0.04    751    0.16
+:elixir_quote."-do_linify/3-lc$^0/1-0-"/3             1878  0.04    754    0.40
+anonymous fn/4 in Puzzle.Solver.make_matrices/1       4438  0.04    791    0.18
+anonymous fn/5 in Stream.transform/3                  4632  0.04    825    0.18
+anonymous fn/3 in Enum.reduce/3                       2896  0.04    837    0.29
+:ordsets.is_element/2                                 5429  0.05   1094    0.20
+:elixir_quote.do_linify/3                             2929  0.05   1099    0.38
+Enum."-reduce/3-lists^foldl/2-0-"/3                   4790  0.06   1187    0.25
+Stream.zip_pair/5                                     3620  0.07   1414    0.39
+Stream.do_transform_inner_enum/7                      4631  0.07   1475    0.32
+Stream.do_transform/7                                 4632  0.08   1588    0.34
+Enum."-map/2-lists^map/1-0-"/2                       10317  0.18   3755    0.36
+anonymous fn/4 in Stream.zip_with/2                  82076  0.56  11553    0.14
+Stream.zip/1                                         81714  0.57  11818    0.14
+Enumerable.Function.reduce/3                         87070  0.60  12363    0.14
+Enumerable.impl_for/1                                91702  0.65  13324    0.15
+Puzzle.Solver.is_row_uniq?/1                         92827  0.70  14543    0.16
+anonymous fn/3 in Enumerable.List.reduce/3          111122  0.75  15450    0.14
+Stream.do_transform_step/2                          111122  0.77  15874    0.14
+anonymous fn/3 in Stream.do_transform_result/6      106491  0.77  15882    0.15
+anonymous fn/4 in Puzzle.Solver.make_matrices/1     106491  0.78  16176    0.15
+Stream.do_transform_result/6                        111122  0.86  17695    0.16
+Stream.zip_with/2                                    82076  1.14  23583    0.29
+:lists.all/2                                         82079  1.20  24721    0.30
+Enum.map/2                                           83343  1.23  25312    0.30
+Enumerable.impl_for!/1                               91702  1.24  25646    0.28
+Enumerable.reduce/3                                  91702  1.34  27553    0.30
+anonymous fn/3 in Puzzle.Solver.solve/1             106491  1.43  29594    0.28
+anonymous fn/3 in Stream.flat_map/2                 111122  1.47  30255    0.27
+Stream.do_transform_inner_list/7                    106491  1.57  32366    0.30
+anonymous fn/3 in Stream.do_transform/7             319473  2.15  44459    0.14
+:erlang.is_list/1                                   328304  2.33  48027    0.15
+Stream.do_transform_user/6                          226868  2.33  48150    0.21
+:erlang.list_to_tuple/1                             328306  2.48  51189    0.16
+Stream.do_transform/5                               125006  2.48  51234    0.41
+:erlang.tuple_to_list/1                             328355  2.53  52196    0.16
+Puzzle.Solver.is_valid_matrix?/1                    106491  2.94  60755    0.57
+:lists.all_1/2                                      328308  3.91  80695    0.25
+anonymous fn/3 in Enum.map/2                        326856  4.23  87227    0.27
+Stream.do_transform_each/3                          319473  4.35  89769    0.28
+anonymous fn/3 in Enum.map/2                        326856  4.43  91420    0.28
+Enumerable.List.reduce/3                            439858  4.66  96134    0.22
+:lists.reverse/2                                    741085  5.57 114840    0.15
+Stream.zip_list/4                                   410380  9.66 199258    0.49
+:lists.reverse/1                                    855290 10.72 221130    0.26
+Stream.zip_list_heads_tails/3                      1723596 16.44 339110    0.20
+
+Profile done over 63 matching functions
+
+Profile results of #PID<0.217.0>
+#                                                    CALLS     % TIME µS/CALL
+Total                                                38925 100.0 9552    0.25
+:maps.iterator/1                                      1038  1.78  170    0.16
+:erts_internal.map_next/3                             1109  2.21  211    0.19
+:cerl.concrete/1                                      1241  2.23  213    0.17
+:cerl.is_lit_list/1                                   1291  2.41  230    0.18
+:beam_validator.check_limit/1                         1352  2.44  233    0.17
+anonymous fn/4 in :beam_types.verified_normal_type/1  1756  2.93  280    0.16
+:beam_types.mtfv_1/1                                  1096  3.28  313    0.29
+:lists.foldl/3                                        1129  3.50  334    0.30
+:cerl.type/1                                          1967  3.73  356    0.18
+:sets.is_element/2                                    1854  3.81  364    0.20
+:lists.foldr_1/3                                      1108  3.92  374    0.34
+:erlang.++/2                                          2062  4.21  402    0.19
+:cerl.lit_list_vals/1                                 1283  4.34  415    0.32
+:lists.foldl_1/3                                      1806  4.84  462    0.26
+:beam_types.verified_type/1                           2816  5.22  499    0.18
+:beam_validator.get_raw_type/2                        1550  5.50  525    0.34
+:maps.next/1                                          3190  7.24  692    0.22
+:beam_ssa.rpo_1/4                                     1744  8.05  769    0.44
+:erlang.setelement/3                                  3165  8.53  815    0.26
+:beam_types.verified_normal_type/1                    3580  8.85  845    0.24
+:maps.fold_1/3                                        2788 10.99 1050    0.38
+
+Profile done over 21 matching functions
+
+Profile results of #PID<0.218.0>
+#                                                 CALLS    % TIME µS/CALL
+Total                                             58159 100. 1419    0.24
+:gb_sets.is_member/2                               1005 0.09  134    0.13
+:lists.duplicate/3                                 1066 0.10  147    0.14
+anonymous fn/2 in :core_lib.vu_expr/2              1076 0.11  154    0.14
+:core_lint.return_match/3                          1004 0.11  156    0.16
+:cerl.clause_body/1                                1051 0.11  157    0.15
+:cerl.clause_guard/1                               1051 0.11  157    0.15
+:cerl.clause_pats/1                                1051 0.11  157    0.15
+:beam_asm.encode/2                                 1140 0.11  157    0.14
+:beam_kernel_to_ssa.fix_sets/3                     1113 0.11  160    0.14
+:cerl.is_literal/1                                 1114 0.12  165    0.15
+:beam_types.make_integer/2                         1104 0.12  167    0.15
+:beam_ssa_opt.non_guards_1/1                       1147 0.12  169    0.15
+:cerl.var_name/1                                   1216 0.12  175    0.14
+:beam_types.limit_depth/2                          1189 0.13  180    0.15
+:erl_anno.generated/1                              1123 0.13  182    0.16
+:erl_anno.location/1                               1126 0.13  183    0.16
+:beam_validator.vm_1/2                             1214 0.13  183    0.15
+:beam_ssa_type.simplify_args/3                     1358 0.13  186    0.14
+:erl_bifs.is_pure/3                                1276 0.13  187    0.15
+:sys_core_alias.post/2                             1125 0.13  191    0.17
+:maps.keys/1                                       1112 0.14  192    0.17
+:lists.mapfoldl/3                                  1304 0.14  199    0.15
+:sets.size/1                                       1434 0.14  202    0.14
+:cerl.get_ann/1                                    1352 0.14  204    0.15
+:erlang.max/2                                      1510 0.14  205    0.14
+:lists.member/2                                    1174 0.15  209    0.18
+:v3_core.skip_lowering/2                           1207 0.15  210    0.17
+:beam_ssa.get_anno/1                               1358 0.15  219    0.16
+:cerl_clauses."-match_1/3-lc$^0/1-0-"/1            1031 0.15  219    0.21
+:erl_internal.comp_op/2                            1599 0.16  221    0.14
+:beam_jump.is_unreachable_after/1                  1573 0.16  221    0.14
+:lists.last/2                                      1673 0.16  230    0.14
+:lists.foldr/3                                     1673 0.17  239    0.14
+:sys_core_bsm.bsm_reorder/1                        1648 0.17  242    0.15
+:beam_ssa_opt.def_blocks_is/3                      1833 0.17  246    0.13
+anonymous fn/3 in :compile.run_sub_passes/2        1359 0.18  249    0.18
+:cerl.is_data/1                                    1591 0.18  252    0.16
+:beam_ssa_type.subtract_types/2                    1072 0.18  253    0.24
+:beam_ssa.clobbers_xregs/1                         1840 0.18  255    0.14
+:gb_trees.is_defined_1/2                           1358 0.18  256    0.19
+:beam_ssa_type.benefits_from_type_anno/2           1317 0.18  257    0.20
+:beam_types.make_type_from_value/1                 1925 0.18  259    0.13
+:beam_jump.rem_unused/3                            1288 0.18  261    0.20
+:elixir_erl.get_ann/3                              1085 0.18  262    0.24
+:beam_ssa_pre_codegen.update_used/4                1027 0.19  269    0.26
+:beam_ssa_type.opt_anno_types/2                    1002 0.19  270    0.27
+:beam_ssa_opt.opt_create_bin_is/1                  1306 0.19  270    0.21
+:sofs.rel/4                                        2005 0.19  272    0.14
+:beam_ssa.no_side_effect/1                         1907 0.19  273    0.14
+:beam_ssa_dead."-used_vars/3-lc$^0/1-0-"/1         1306 0.19  274    0.21
+:beam_ssa."-dominators_1/3-lc$^0/1-0-"/2           1127 0.19  276    0.24
+:beam_ssa_opt.sink_try_is_1/2                      1045 0.20  277    0.27
+:beam_types.join/2                                 1733 0.20  277    0.16
+:beam_call_types."-types/3-lc$^2/1-0-"/1           1260 0.20  278    0.22
+:beam_ssa_pre_codegen.overlap_status/2             2043 0.20  288    0.14
+:beam_ssa_dead.normalize_test/2                    1429 0.20  291    0.20
+:beam_ssa_type.sig_is/7                            1038 0.21  300    0.29
+:sets.is_disjoint/2                                1017 0.21  303    0.30
+:beam_kernel_to_ssa.build_graph_1/3                1113 0.22  306    0.27
+:beam_asm.encode_op_1/3                            1501 0.23  323    0.22
+:beam_ssa_share.shortcut_nonempty_block/2          1823 0.23  324    0.18
+:beam_asm.encode_arg/2                             1053 0.23  325    0.31
+:beam_ssa_bool."-sub_args/2-lc$^0/1-0-"/2          1098 0.23  327    0.30
+:beam_kernel_to_ssa.fix_phis_1/3                   1131 0.23  327    0.29
+:beam_ssa."-predecessors/1-lc$^0/1-0-"/1           1248 0.23  330    0.26
+:sofs.rel2fam/4                                    1796 0.23  331    0.18
+:beam_ssa_dead.eval_terminator/3                   1041 0.24  334    0.32
+:lists.usplit_1/5                                  1738 0.24  339    0.20
+:cerl_clauses.match_list/3                         1097 0.24  339    0.31
+:beam_ssa_codegen.beam_arg/2                       1678 0.24  342    0.20
+:ordsets.subtract/2                                1983 0.24  344    0.17
+:beam_ssa_type.update_success_types/5              1263 0.25  348    0.28
+:beam_validator.get_reg_vref/2                     1014 0.25  355    0.35
+:gb_trees.to_list/2                                1815 0.25  358    0.20
+:maps.filter_1/2                                   1142 0.25  361    0.32
+:lists.takewhile/2                                 1663 0.25  362    0.22
+:beam_ssa_type.sub_arg/2                           2427 0.26  371    0.15
+:beam_ssa_pre_codegen.expire_active/4              1429 0.26  372    0.26
+:beam_ssa_share.block/2                            1368 0.26  374    0.27
+:beam_ssa_dead.used_vars_succ/4                    1403 0.27  379    0.27
+:beam_ssa_pre_codegen.add_ranges/2                 1014 0.27  382    0.38
+:beam_ssa_pre_codegen.used_args/1                  2056 0.27  384    0.19
+:beam_ssa_type.meet_types/2                        1397 0.27  385    0.28
+:beam_validator.get_term_type/2                    1361 0.27  385    0.28
+:maps.iterator/1                                   2722 0.28  391    0.14
+:beam_jump.share_1/6                               1094 0.28  392    0.36
+:sets.is_disjoint_1/2                              1357 0.28  398    0.29
+:gb_sets.is_member_1/2                             2848 0.28  398    0.14
+:gb_trees.insert_1/4                               1359 0.28  401    0.30
+:beam_ssa_opt."-sub_1/2-lc$^1/1-0-"/2              1703 0.28  401    0.24
+:beam_types.mtfv_1/1                               2632 0.28  404    0.15
+:cerl_trees.map_list/2                             1132 0.29  405    0.36
+:lists.umergel/3                                   2351 0.29  407    0.17
+:beam_ssa_dead.shortcut_2/5                        1434 0.29  407    0.28
+:core_lib.vu_expr/2                                2109 0.29  410    0.19
+:compile.run_sub_passes_1/3                        1465 0.29  415    0.28
+:lists.takewhile_1/2                               1696 0.30  423    0.25
+:lists.any_1/2                                     1707 0.30  423    0.25
+:beam_ssa_opt.cse_successors_1/3                   2059 0.30  423    0.21
+:beam_types.normalize/1                            3046 0.31  437    0.14
+:beam_jump.opt/3                                   1160 0.31  438    0.38
+anonymous fn/3 in :beam_ssa.fold_uses_block/3      1585 0.31  439    0.28
+:beam_ssa_opt.sub_arg/2                            2678 0.31  440    0.16
+:beam_validator.update_type/4                      1025 0.31  441    0.43
+:beam_ssa_type.join_types_1/3                      1489 0.31  445    0.30
+:beam_ssa_dead.used_vars_is/2                      1306 0.32  456    0.35
+:beam_validator.vi/2                               1214 0.32  457    0.38
+:sys_core_alias.pre/2                              1494 0.32  459    0.31
+:beam_utils.replace_labels_1/4                     2478 0.32  461    0.19
+:beam_types.get_singleton_value/1                  3130 0.33  464    0.15
+:beam_jump.classify_labels/3                       1229 0.34  478    0.39
+:cerl_trees.map/2                                  1648 0.35  503    0.31
+:maps.get/3                                        2181 0.36  508    0.23
+:beam_ssa_type.simplify/2                          1276 0.36  515    0.40
+:beam_ssa_type.used_once_last_uses/3               1485 0.36  517    0.35
+:beam_validator.get_movable_term_type/2            1856 0.36  517    0.28
+:beam_ssa_type.type/5                              1317 0.37  519    0.39
+:beam_jump.instr_labels/1                          3503 0.37  519    0.15
+:beam_types.meet/2                                 3563 0.37  519    0.15
+:beam_jump.ulbl/2                                  1811 0.37  528    0.29
+:beam_ssa_opt.live_opt_phis/4                      1100 0.38  533    0.48
+:beam_ssa_opt.sub/2                                1930 0.38  536    0.28
+:beam_ssa_type.used_once_uses/3                    2272 0.38  538    0.24
+:beam_ssa."-successors/1-lc$^0/1-0-"/1             2302 0.38  541    0.24
+:beam_validator.validate_instrs/4                  1310 0.38  544    0.42
+:beam_ssa.fold_blocks_1/4                          1927 0.38  545    0.28
+:beam_ssa_opt.record_opt_is/3                      1922 0.40  561    0.29
+:ordsets.intersection/2                            3065 0.40  571    0.19
+:beam_ssa_type.update_successor/3                  1787 0.40  574    0.32
+:beam_ssa_share.share_terminator/2                 1368 0.41  578    0.42
+:beam_ssa."-predecessors/1-lc$^1/1-1-"/3           2812 0.42  593    0.21
+:lists.reverse/2                                   3151 0.42  594    0.19
+:beam_ssa_type.update_successors/5                 1263 0.42  603    0.48
+:beam_ssa_type.update_types/3                      1317 0.43  608    0.46
+:cerl_trees.next_free_in_list/2                    2712 0.43  611    0.23
+:ordsets.is_element/2                              3572 0.43  612    0.17
+:sets.del_element/2                                2385 0.44  622    0.26
+anonymous fn/4 in :beam_ssa.fold_uses_block/3      1477 0.44  625    0.42
+:beam_ssa_dead.shortcut_3/5                        1434 0.44  631    0.44
+:beam_validator.get_concrete_type/2                2318 0.46  650    0.28
+:cerl_trees.mapfold_list/4                         2028 0.46  651    0.32
+:beam_call_types.types/3                           1350 0.46  652    0.48
+:sets.new/1                                        3919 0.46  653    0.17
+:beam_validator.check_limit/1                      4631 0.46  654    0.14
+:erts_internal.map_next/3                          3373 0.47  661    0.20
+:beam_ssa_type.simplify_terminator/4               1288 0.48  681    0.53
+:maps.put/3                                        1649 0.49  693    0.42
+:ordsets.del_element/2                             2382 0.49  694    0.29
+:v3_core.lineno_anno/2                             1123 0.49  694    0.62
+:maps.from_keys/2                                  3154 0.50  705    0.22
+:beam_ssa_opt.live_opt_succ/4                      2679 0.51  717    0.27
+:beam_ssa_type.used_once_2/3                       1912 0.51  730    0.38
+:beam_ssa_type.opt_is/8                            1906 0.52  743    0.39
+:maps.fold_1/3                                     2259 0.53  755    0.33
+:beam_ssa_dead.eval_is/4                           2903 0.54  763    0.26
+:lists.foldr_1/3                                   3463 0.55  777    0.22
+:beam_ssa_opt.cse_is/4                             1930 0.57  803    0.42
+:beam_ssa_opt.live_opt_blk/2                       1100 0.60  845    0.77
+:ordsets.from_list/1                               6074 0.60  846    0.14
+:sets.from_list/2                                  3030 0.61  868    0.29
+:beam_ssa_opt.sub_1/2                              1930 0.64  902    0.47
+:ordsets.add_element/2                             4025 0.64  907    0.23
+:sys_core_fold.expr/3                              2691 0.66  931    0.35
+:cerl_trees.map_1/2                                1648 0.67  948    0.58
+:beam_types.verified_type/1                        6870 0.68  968    0.14
+:maps.from_list/1                                  1626 0.68  971    0.60
+:lists.usort/1                                     6307 0.69  974    0.15
+:beam_ssa.normalize/1                              5645 0.70  988    0.18
+:beam_ssa_type."-normalized_types/2-lc$^0/1-0-"/2  2766 0.76 1077    0.39
+:lists.mapfoldl_1/3                                3140 0.78 1105    0.35
+:beam_ssa_opt.live_opt_is/3                        2538 0.78 1113    0.44
+:beam_ssa_opt.live_opt/3                           1181 0.81 1157    0.98
+:beam_ssa_type."-simplify_args/3-lc$^0/1-0-"/3     3715 0.83 1183    0.32
+:maps.next/1                                       5653 0.84 1188    0.21
+:maps.remove/2                                     4734 0.84 1191    0.25
+:maps.merge/2                                      4837 0.85 1211    0.25
+:erlang.++/2                                       6727 0.87 1241    0.18
+:sets.union/2                                      4722 0.88 1246    0.26
+:beam_validator.get_raw_type/2                     5398 0.94 1332    0.25
+:cerl.type/1                                       8462 0.96 1358    0.16
+:beam_ssa_type.simplify_arg/3                      4079 1.11 1570    0.38
+:beam_ssa.fix_phis/2                               3356 1.15 1637    0.49
+:beam_ssa_type.simplify/5                          1562 1.22 1735    1.11
+:beam_ssa_type.concrete_type/2                     8646 1.24 1757    0.20
+:cerl_trees.next_free/2                            3575 1.28 1822    0.51
+:lists.reverse/1                                  10121 1.34 1903    0.19
+:cerl_trees.mapfold/4                              2701 1.38 1954    0.72
+:beam_types.verified_normal_type/1                10006 1.42 2019    0.20
+:beam_ssa.used/1                                   8711 1.44 2049    0.24
+:lists.foldl_1/3                                  11610 1.61 2288    0.20
+:lists.foldl/3                                     9585 1.75 2487    0.26
+:ordsets.union/2                                  11177 1.89 2681    0.24
+:beam_ssa.used_args/1                             13963 2.04 2895    0.21
+:beam_ssa.linearize_1/4                            8069 2.19 3112    0.39
+:beam_ssa.successors/1                            20153 2.28 3234    0.16
+:sets.is_element/2                                23785 2.80 3979    0.17
+:sets.add_element/2                               16263 2.84 4033    0.25
+:erlang.setelement/3                              33864 4.68 6649    0.20
+:beam_ssa.rpo_1/4                                 20274 5.51 7824    0.39
+
+Profile done over 199 matching functions

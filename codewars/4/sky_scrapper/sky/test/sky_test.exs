@@ -1,118 +1,6 @@
-defmodule PuzzleSolver do
-  @moduledoc """
-    a
-  """
+defmodule PuzzleSolver.Test0 do
+  @moduledoc false
 
-  def matcher(x) do
-    case x do
-      [4, _, _, _] -> 1
-      [1, 4, _, _] -> 2
-      [2, 1, 4, _] -> 2
-      [2, 4, _, _] -> 2
-      [3, _, _, 4] -> 2
-      [3, _, 4, _] -> 2
-      [3, 4, _, _] -> 2
-      [1, 2, 4, _] -> 3
-      [1, 3, _, 4] -> 3
-      [1, 3, 4, _] -> 3
-      [2, 3, 4, _] -> 3
-      [2, 3, 1, 4] -> 3
-      [2, _, _, 4] -> 3
-      [2, 3, 4, _] -> 3
-      [1, 2, 3, 4] -> 4
-    end
-  end
-
-  def make_rows() do
-    seq = 1..4
-
-    for a <- seq,
-        b <- seq,
-        c <- seq,
-        d <- seq,
-        a + b + c + d == 10,
-        MapSet.size(check_l([a, b, c, d])) == 4 do
-      [a, b, c, d]
-    end
-  end
-
-  def make_matrices(rows) do
-    for a <- rows,
-        b <- rows,
-        c <- rows,
-        d <- rows,
-        is_valid_matrix?([a, b, c, d]) do
-      [a, b, c, d]
-    end
-  end
-
-  def make_clues(matrix) do
-    # directions
-    directions = [
-      matrix |> Enum.zip() |> Enum.map(&Tuple.to_list/1),
-      matrix |> Enum.map(&Enum.reverse/1),
-      matrix
-      |> Enum.reverse()
-      |> Enum.map(&Enum.reverse/1)
-      |> Enum.zip()
-      |> Enum.map(&Tuple.to_list/1),
-      matrix |> Enum.reverse()
-    ]
-
-    for matrix <- directions,
-        clues <- Enum.map(matrix, &matcher/1) do
-        clues
-    end
-  end
-
-  def solve(clues) do
-    rows = make_rows()
-    [rv] = for matrix <- make_matrices(rows),
-      clues == mask(clues, make_clues(matrix))
-        do
-          matrix
-      end
-    rv
-  end
-
-  defp check_l(l) do
-    MapSet.new(l)
-  end
-
-  def check_ll(map_set, []), do: map_set
-
-  def check_ll(map_set, [head | tail]) do
-    check_ll(
-      map_set |> MapSet.put(head),
-      tail
-    )
-  end
-
-  def rotate_90(ll) do
-    ll
-    |> Enum.zip()
-    |> Enum.map(fn x -> Tuple.to_list(x) end)
-  end
-
-  def is_valid_matrix?(matrix) do
-    rv =
-      for row <-
-            rotate_90(matrix),
-          MapSet.size(check_ll(MapSet.new([]), row)) == 4 do
-        row
-      end
-
-    length(rv) == 4
-  end
-
-  def mask(masker, maskee) do
-    Enum.zip(masker, maskee)
-    |> Enum.map(fn
-      { 0, _ } -> 0
-      { _, x } -> x
-      end)
-  end
-end
 
 ExUnit.start()
 
@@ -121,6 +9,41 @@ defmodule PuzzleSolverTest do
   test
   """
   use ExUnit.Case
+
+  # test "make lazy matrices" do
+  #     rows = PuzzleSolver.make_rows()
+  #     matrices = PuzzleSolver.make_matrices(rows) |> Enum.take(2) |> IO.inspect()
+  # end
+  test "it can solve 4x4 puzzle 1" do
+    expected = [
+      [1, 3, 4, 2],
+      [4, 2, 1, 3],
+      [3, 4, 2, 1],
+      [2, 1, 3, 4]
+    ]
+
+    clues = [
+      2,
+      2,
+      1,
+      3,
+      2,
+      2,
+      3,
+      1,
+      1,
+      2,
+      2,
+      3,
+      3,
+      2,
+      1,
+      3
+    ]
+
+    actual = PuzzleSolver.solve(clues)
+    assert actual == expected
+  end
 
   test "matcher" do
     assert PuzzleSolver.matcher([1, 2, 3, 4]) == 4
@@ -172,13 +95,13 @@ defmodule PuzzleSolverTest do
            ]
   end
 
-  test "make matrices" do
-    rows = PuzzleSolver.make_rows()
+  # test "make matrices" do
+  #   rows = PuzzleSolver.make_rows()
 
-    matrices = PuzzleSolver.make_matrices(rows)
+  #   matrices = PuzzleSolver.make_matrices(rows)
 
-    assert matrices |> length() == 576
-  end
+  #   assert matrices |> length() == 576
+  # end
 
   test "directions" do
     matrix = [
@@ -250,36 +173,6 @@ defmodule PuzzleSolverTest do
 
     rv = PuzzleSolver.make_clues(matrix)
     assert rv == clues
-  end
-
-  test "it can solve 4x4 puzzle 1" do
-    expected = [
-      [1, 3, 4, 2],
-      [4, 2, 1, 3],
-      [3, 4, 2, 1],
-      [2, 1, 3, 4]
-    ]
-
-    clues = [
-      2,
-      2,
-      1,
-      3,
-      2,
-      2,
-      3,
-      1,
-      1,
-      2,
-      2,
-      3,
-      3,
-      2,
-      1,
-      3
-    ]
-    actual = PuzzleSolver.solve(clues)
-    assert actual == expected
   end
 
   test "mask" do

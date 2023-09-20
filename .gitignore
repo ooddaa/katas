@@ -1,3 +1,4 @@
 .watchman*
 node_modules*
 deps/*
+.history/

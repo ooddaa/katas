@@ -1,9 +1,9 @@
-defmodule Sky.MixProject do
+defmodule Puzzle.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :sky,
+      app: :puzzle,
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
