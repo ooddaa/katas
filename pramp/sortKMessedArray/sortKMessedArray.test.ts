@@ -12,6 +12,9 @@ output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 Insertion Sort and Heapsort
 https://en.wikipedia.org/wiki/Insertion_sort
 https://en.wikipedia.org/wiki/Heapsort
+
+https://en.wikipedia.org/wiki/Implicit_data_structure
+https://en.wikipedia.org/wiki/Binary_heap#Heap_implementation
 */
 
 function quicksort(nums: number[]): number[] {
@@ -24,24 +27,44 @@ function quicksort(nums: number[]): number[] {
 };
 
 function solution(nums: number[], k: number): number[] {
-  for (let i = 0; i < nums.length; i++) {
-    const next = i + 1
-    if (nums[i] > nums[next]) {
-      // i+1
-      const left = next - k/2
-      const right = next + k/2 + 1// slice end index is exclusive
-      nums = [...nums.slice(0, left), ...quicksort(nums.slice(left, right)), ...nums.slice(right)]
-      i = 0
+  for (let i = 1; i < nums.length; i++) {
+    let x = nums[i]
+    let j = i - 1
+
+    while (j >= i - k && nums[j] > x) {
+      nums[j+1] = nums[j]
+      j--
     }
+    nums[j+1] = x
   }
   return nums
-/* 
-[1, 4, 5, 2, 3, 7, 8, 6, 10, 9]
-[1, [4, 5, -2-, 3, 7], 8, 6, 10, 9] => [2, 3, 4, 5, 7]
-[1, [2, 3, 4, 5, 7], 8, 6, 10, 9]
-[1, 2, 3, 4, 5, 7, 8, 6, 10, 9] => [2, 3, 4, 5, 7]
-*/
 }
+// function solution(nums: number[], k: number): number[] {
+//   for (let i = 1; i < nums.length; i++) {
+//     let x = nums[i]
+//     let j = i - 1
+
+//     while (j >= 0 && nums[j] > x) {
+//       nums[j+1] = nums[j]
+//       j--
+//     }
+//     nums[j+1] = x
+//   }
+//   return nums
+// }
+// function solution(nums: number[], k: number): number[] {
+//   for (let i = 0; i < nums.length; i++) {
+//     const next = i + 1
+//     if (nums[i] > nums[next]) {
+//       // i+1
+//       const left = next - k/2
+//       const right = next + k/2 + 1// slice end index is exclusive
+//       nums = [...nums.slice(0, left), ...quicksort(nums.slice(left, right)), ...nums.slice(right)]
+//       i = 0
+//     }
+//   }
+//   return nums
+// }
 
 test("[1, 4, 5, 2, 3, 7, 8, 6, 10, 9]", () => {
   const nums = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9]

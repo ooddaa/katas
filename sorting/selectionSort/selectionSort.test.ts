@@ -3,6 +3,8 @@ import {test, expect} from "bun:test"
 /* 
 https://en.wikipedia.org/wiki/Selection_sort
 selection sort is an in-place comparison sorting algorithm.
+scans forwards.
+ok for small datasets. For bigger use quicksort/merge 
 O(n^2) comparisons 
 O(n) swaps
 1. create sorted[] and unsorted[]

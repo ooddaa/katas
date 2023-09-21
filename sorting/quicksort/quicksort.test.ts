@@ -2,6 +2,8 @@ import {test, expect} from "bun:test"
 
 /* 
 https://brilliant.org/wiki/quick-sort/
+worst case O(n^2)
+avg case   O(n log n)
 */
 
 function solution(nums: number[]): number[] {
