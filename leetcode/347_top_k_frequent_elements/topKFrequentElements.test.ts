@@ -1,7 +1,11 @@
 import {test, expect} from "bun:test"
 
 /* 
-space On => we might have all unique elements => build hashmap with keys = n
+https://leetcode.com/problems/top-k-frequent-elements/solutions/3551664/typescript-frequency-count-and-then-sort-runtime-97-memory-70/
+
+space O(2n) => 
+  1 we might have all unique elements => build hashmap with keys = n
+  2 Node.js sort is quicksort => worst case id O(n)
 time  O n^2 (sort) + O 2n (reducing and mapping) = On^2
 */
 function topKFrequent(nums: number[], k: number): number[] {

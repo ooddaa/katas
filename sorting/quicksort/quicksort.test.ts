@@ -2,8 +2,11 @@ import {test, expect} from "bun:test"
 
 /* 
 https://brilliant.org/wiki/quick-sort/
+time:
 worst case O(n^2)
 avg case   O(n log n)
+space: 
+worst case O(n) => https://cs.stackexchange.com/questions/138335/what-is-the-space-complexity-of-quicksort
 */
 
 function solution(nums: number[]): number[] {
