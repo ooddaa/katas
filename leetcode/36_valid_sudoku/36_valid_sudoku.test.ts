@@ -1,10 +1,14 @@
 import {test, expect} from "bun:test"
 
+
 /* 
 https://leetcode.com/problems/valid-sudoku/
+tc - O(2n) - we loop over whole board to check rows/cols & then over whole board 
+      again to build squares 🫣
+sc - we use 2 maps, holding max 9 elements at a time, then coord list (max 81 elements)
+     + acc list (9 items) and map (9 items) == O (9 + 9 + 81 + 9 + 9) = O(127)
 */
-
-function isValidSudoku(board: string[][]): boolean {
+function isValidSudoku1(board: string[][]): boolean {
   for (let row = 0; row < board.length; row++) {
     let acc = {}, acc2 = {}
     for (let i = 0; i < board.length; i++) {
@@ -42,6 +46,53 @@ function isValidSudoku(board: string[][]): boolean {
   }
   return true
 };
+
+/* 
+tc - O(n) == O(81) as we walk the board once
+sc - we use 3 maps with 27 sets total, each can hold 9 items max => O(27*9)
+66ms
+Beats 77.97%of users with TypeScript
+46.79MB
+Beats 47.70%of users with TypeScript
+*/
+function isValidSudoku(board: string[][]): boolean {
+  let rows = {}, cols = {}, squares = {}
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board.length; col++) {
+      let el = board[row][col]
+      if (el == ".") continue
+      let ind = `${Math.floor(row/3)},${Math.floor(col/3)}`
+      if (rows[row]?.has(el) || cols[col]?.has(el) || squares[ind]?.has(el)) {
+        // console.dir({
+        //   rows,
+        //   "rows[row]?.has(el)": rows[row]?.has(el)
+        // })
+        return false
+      }
+      if (row in rows) {
+        rows[row].add(el)
+      } 
+      else {
+        rows[row] = new Set(el)
+      }
+
+      if (col in cols) {
+        cols[col].add(el)
+      } 
+      else {
+        cols[col] = new Set(el)
+      }
+      if (ind in squares) {
+        squares[ind].add(el)
+      } 
+      else {
+        squares[ind] = new Set(el)
+      }
+    }
+  }
+  
+  return true
+}
 
 test("true", () => {
   const board = [
