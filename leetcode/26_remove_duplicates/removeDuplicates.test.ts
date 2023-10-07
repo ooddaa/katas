@@ -10,6 +10,7 @@ function solutionForNonSortedArr(nums: (number)[]): number {
   nums = nums.sort((a, b) => a - b).filter(x => x !== Infinity)
   return nums.length
 }
+
 /* 
 [1,2,1,3]
 j 1 i 1 => [1,[2],1,3] 
